@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+const int MAX = 100;
+
+class Stack {
+    int top;
+
+public:
+    int a[MAX];
+
+    Stack() { top = -1; }
+
+    bool push(int x) {
+        if (top >= (MAX - 1)) {
+            cout << "Stack Overflow. Cannot push element " << x << endl;
+            return false;
+        } else {
+            a[++top] = x;
+            cout << x << " pushed into stack\n";
+            return true;
+        }
+    }
+
+    int pop() {
+        if (top < 0) {
+            cout << "Stack Underflow. Cannot pop element from the stack\n";
+            return 0;
+        } else {
+            int x = a[top--];
+            return x;
+        }
+    }
+
+    int size() { return top + 1; }
+
+    bool isEmpty() { return (top < 0); }
+
+    int topElement() { return a[top]; }
+};
+
+int main() {
+    Stack s;
+    s.push(10);
+    s.push(20);
+    s.push(30);
+
+    cout << "Current size of stack is " << s.size() << endl;
+
+    cout << s.pop() << " popped from stack\n";
+
+    cout << "Current size of stack is " << s.size() << endl;
+
+    return 0;
+}
